@@ -14,5 +14,5 @@ In the root directory of your project, run the following commands:
 In the root directory of your project, run the following commands:
 
 ``` sh
-  yarn test run
+  yarn test
 ```
