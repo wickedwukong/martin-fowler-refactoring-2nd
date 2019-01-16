@@ -1,7 +1,6 @@
-// test/main.test.js
 import { expect } from 'chai';
 
-import Main from '../src/main';
+import Main from '../src/example';
 
 describe('Main', () => {
 
