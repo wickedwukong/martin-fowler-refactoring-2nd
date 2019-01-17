@@ -1,7 +1,5 @@
 import { expect } from 'chai';
-
-let f = require('../../src/chp1/statement.js');
-let statement = f.statement;
+import {statement} from '../../src/chp1/statement.js'
 
 describe('statement', () => {
     let playsJson =
