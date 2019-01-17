@@ -2,11 +2,13 @@
 Practice refactoring techniques in the Martin Fowler's Refactoring 2nd edition
 
 ## Set up project: 
+
+This project is dependent on the package manager [Yarn](https://yarnpkg.com/en/docs/install).
+
 In the root directory of your project, run the following commands:
 
 ``` sh
- yarn init
- yarn add --save-dev mocha chai babel-register babel-preset-es201
+ yarn
 ```
 
 ## Run tests:
