@@ -57,3 +57,4 @@ In the run configuration dialog have the following line for the Node options fie
 ```
 -r babel-register
 ````
+![](webstorm-setup.png)
