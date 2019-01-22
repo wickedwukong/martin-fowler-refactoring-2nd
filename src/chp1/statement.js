@@ -6,12 +6,21 @@ function usd(aNumber) {
         {
             style: "currency", currency: "USD",
             minimumFractionDigits: 2
-        }).format(aNumber/ 100);
+        }).format(aNumber / 100);
 }
 
 
-
 function statement(invoice, plays) {
+    let result = `Statement for ${invoice.customer}\n`;
+    for (let perf of invoice.performances) {
+        result += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
+    }
+
+    result += `Amount owed is ${usd(totalAmount(invoice))}\n`;
+    result += `You earned ${totalVolumeCredits(invoice)} credits\n`;
+    return result;
+
+
     function playFor(aPerformance) {
         return plays[aPerformance.playID];
     }
@@ -62,13 +71,4 @@ function statement(invoice, plays) {
         return volumeCredits;
     }
 
-
-    let result = `Statement for ${invoice.customer}\n`;
-    for (let perf of invoice.performances) {
-        result += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
-    }
-
-    result += `Amount owed is ${usd(totalAmount(invoice))}\n`;
-    result += `You earned ${totalVolumeCredits(invoice)} credits\n`;
-    return result;
 }
