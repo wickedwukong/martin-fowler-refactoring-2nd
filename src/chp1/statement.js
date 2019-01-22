@@ -73,9 +73,13 @@ function renderPlainText(statementData, plays) {
 
 }
 
+function enhancePerformance(aPerformance) {
+    return Object.assign({}, aPerformance);
+}
+
 function statement(invoice, plays) {
     let statementData = {};
     statementData.customer = invoice.customer;
-    statementData.performances = invoice.performances;
+    statementData.performances = invoice.performances.map(enhancePerformance);
     return renderPlainText(statementData, plays);
 }
