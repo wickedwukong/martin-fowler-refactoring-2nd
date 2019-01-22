@@ -23,10 +23,6 @@ function renderPlainText(statementData) {
     return result;
 }
 
-function htmlStatement(invoice, plays) {
-    return renderHtml(createStatementData(invoice, plays));
-}
-
 function renderHtml(data) {
     let result = `<h1>Statement for ${data.customer}</h1>\n`;
     result += "<table>\n";
@@ -40,6 +36,11 @@ function renderHtml(data) {
     result += `<p>You earned <em>${data.totalVolumeCredits}</em> credits</p>\n`;
     return result;
 }
+
+function htmlStatement(invoice, plays) {
+    return renderHtml(createStatementData(invoice, plays));
+}
+
 
 function statement(invoice, plays) {
     return renderPlainText(createStatementData(invoice, plays));
