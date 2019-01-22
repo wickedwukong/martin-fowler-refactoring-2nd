@@ -19,7 +19,7 @@ function renderPlainText(statementData) {
     result += `Amount owed is ${usd(statementData.totalAmount)}\n`;
     result += `You earned ${statementData.totalVolumeCredits} credits\n`;
     return result;
-    }
+}
 
 
 function statement(invoice, plays) {
@@ -48,19 +48,11 @@ function statement(invoice, plays) {
     }
 
     function totalVolumeCredits(statementData) {
-        let volumeCredits = 0;
-        for (let perf of statementData.performances) {
-            volumeCredits += perf.volumeCredits;
-        }
-        return volumeCredits;
+        return statementData.performances.reduce((total, performance) => total + performance.volumeCredits, 0)
     }
 
     function totalAmount(statementData) {
-        let result = 0;
-        for (let perf of statementData.performances) {
-            result += perf.amount;
-        }
-        return result;
+        return statementData.performances.reduce((total, aPerformance) => total + aPerformance.amount, 0)
     }
 
 
