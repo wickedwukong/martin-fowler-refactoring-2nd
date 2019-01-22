@@ -16,24 +16,18 @@ function renderPlainText(statementData) {
         result += `  ${perf.play.name}: ${usd(perf.amount)} (${perf.audience} seats)\n`;
     }
 
-    result += `Amount owed is ${usd(totalAmount())}\n`;
+    result += `Amount owed is ${usd(statementData.totalAmount)}\n`;
     result += `You earned ${statementData.totalVolumeCredits} credits\n`;
     return result;
-    function totalAmount() {
-        let result = 0;
-        for (let perf of statementData.performances) {
-            result += perf.amount;
-        }
-        return result;
     }
-}
 
 
 function statement(invoice, plays) {
     let statementData = {};
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enhancePerformance);
-    statementData.totalVolumeCredits = totalVolumeCreditsFor(statementData);
+    statementData.totalVolumeCredits = totalVolumeCredits(statementData);
+    statementData.totalAmount = totalAmount(statementData);
     return renderPlainText(statementData);
 
 
@@ -53,7 +47,7 @@ function statement(invoice, plays) {
         return volumeCredits
     }
 
-    function totalVolumeCreditsFor(statementData) {
+    function totalVolumeCredits(statementData) {
         let volumeCredits = 0;
         for (let perf of statementData.performances) {
             volumeCredits += perf.volumeCredits;
@@ -61,6 +55,13 @@ function statement(invoice, plays) {
         return volumeCredits;
     }
 
+    function totalAmount(statementData) {
+        let result = 0;
+        for (let perf of statementData.performances) {
+            result += perf.amount;
+        }
+        return result;
+    }
 
 
     function amountFor(aPerformance) {
