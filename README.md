@@ -49,3 +49,11 @@ In the root directory of your project, run the following commands:
 ``` sh
   yarn test
 ```
+
+## Setup JetBrain's WebStorm to run test:
+
+In the run configuration dialog have the following line for the Node options field:
+
+```
+-r babel-register
+````
