@@ -9,6 +9,8 @@ function usd(aNumber) {
         }).format(aNumber/ 100);
 }
 
+
+
 function statement(invoice, plays) {
     function playFor(aPerformance) {
         return plays[aPerformance.playID];
@@ -44,10 +46,17 @@ function statement(invoice, plays) {
         return volumeCredits
     }
 
+    function totalVolumeCredits(invoice) {
+        let volumeCredits = 0;
+        for (let perf of invoice.performances) {
+            volumeCredits += volumeCreditsFor(perf);
+        }
+        return volumeCredits;
+    }
+
 
     let totalAmount = 0;
     let result = `Statement for ${invoice.customer}\n`;
-
 
     for (let perf of invoice.performances) {
         // print line for this order
@@ -55,12 +64,7 @@ function statement(invoice, plays) {
         totalAmount += amountFor(perf);
     }
 
-    let volumeCredits = 0;
-    for (let perf of invoice.performances) {
-        volumeCredits += volumeCreditsFor(perf);
-    }
-    
     result += `Amount owed is ${usd(totalAmount)}\n`;
-    result += `You earned ${volumeCredits} credits\n`;
+    result += `You earned ${totalVolumeCredits(invoice)} credits\n`;
     return result;
 }
