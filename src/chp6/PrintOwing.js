@@ -1,20 +1,6 @@
-let Clock = {
-    today: {
-        getFullYear() {
-            return 2000;
-        },
 
-        getMonth() {
-            return 1;
-        },
 
-        getDate() {
-          return 1;
-        }
-    }
-};
-
-export function printOwing(invoice, console) {
+export function printOwing(invoice, console, clock) {
     let outstanding = 0;
 
     console.log("***********************");
@@ -27,11 +13,11 @@ export function printOwing(invoice, console) {
     }
 
     // record due date
-    const today = Clock.today;
+    const today = clock.today;
     invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 
     //print details
     console.log(`name: ${invoice.customer}`);
     console.log(`amount: ${outstanding}`);
-    console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
+    console.log(`due: ${invoice.dueDate.toLocaleDateString("en-US")}`);
 }

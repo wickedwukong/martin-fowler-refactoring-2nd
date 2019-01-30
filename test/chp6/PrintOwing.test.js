@@ -1,13 +1,29 @@
 import { expect } from 'chai';
 import {printOwing} from '../../src/chp6/PrintOwing'
 
+let Clock = {
+    today: {
+        getFullYear() {
+            return 2000;
+        },
+
+        getMonth() {
+            return 0;
+        },
+
+        getDate() {
+            return 1;
+        }
+    }
+};
+
 class Console {
     constructor() {
-
+      this._content = "";
     }
 
     log(content) {
-        this._content += content;
+        this._content += content + "\n";
     }
 
     get content() {
@@ -25,22 +41,19 @@ describe('PrintOwing', () => {
             "customer": "JL"
 
         };
-        printOwing(invoice, new Console());
+
+        let console = new Console();
 
         let expected = "***********************\n" +
             "**** Customer Owes ****\n" +
             "***********************\n" +
             "name: JL\n" +
             "amount: 1\n" +
-            "due: 3/2/2000\n" +
-            "***********************\n" +
-            "**** Customer Owes ****\n" +
-            "***********************\n" +
-            "name: JL\n" +
-            "amount: 1\n" +
-            "due: 3/2/2000";
+            "due: 1/31/2000\n";
 
-        expect(printOwing(invoice, console)).to.equal();
+        printOwing(invoice, console, Clock);
+
+        expect(console.content).to.equal(expected);
 
     });
 
