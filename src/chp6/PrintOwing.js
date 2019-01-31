@@ -15,14 +15,18 @@ function recordDueDate(clock, invoice) {
     invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 }
 
+function calculateOutstanding(invoice) {
+    let result = 0;
+    for (const o of invoice.orders) {
+        result += o.amount;
+    }
+    return result;
+}
+
 export function printOwing(invoice, console, clock) {
     printBanner(console);
 
-    // calculate outstanding
-    let outstanding = 0;
-    for (const o of invoice.orders) {
-        outstanding += o.amount;
-    }
+    const outstanding = calculateOutstanding(invoice);
 
     recordDueDate(clock, invoice);
 
