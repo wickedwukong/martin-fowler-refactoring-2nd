@@ -5,10 +5,10 @@ function printBanner(console) {
 }
 
 export function printOwing(invoice, console, clock) {
-    let outstanding = 0;
     printBanner(console);
 
     // calculate outstanding
+    let outstanding = 0;
     for (const o of invoice.orders) {
         outstanding += o.amount;
     }
