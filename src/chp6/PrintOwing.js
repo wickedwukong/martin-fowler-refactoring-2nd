@@ -1,11 +1,12 @@
-
-
-export function printOwing(invoice, console, clock) {
-    let outstanding = 0;
-
+function printBanner(console) {
     console.log("***********************");
     console.log("**** Customer Owes ****");
     console.log("***********************");
+}
+
+export function printOwing(invoice, console, clock) {
+    let outstanding = 0;
+    printBanner(console);
 
     // calculate outstanding
     for (const o of invoice.orders) {
