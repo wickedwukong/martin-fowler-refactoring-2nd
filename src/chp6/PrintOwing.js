@@ -10,6 +10,11 @@ function printDetails(invoice, outstanding, console) {
     console.log(`due: ${invoice.dueDate.toLocaleDateString("en-US")}`);
 }
 
+function recordDueDate(clock, invoice) {
+    const today = clock.today;
+    invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+}
+
 export function printOwing(invoice, console, clock) {
     printBanner(console);
 
@@ -19,9 +24,7 @@ export function printOwing(invoice, console, clock) {
         outstanding += o.amount;
     }
 
-    // record due date
-    const today = clock.today;
-    invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+    recordDueDate(clock, invoice);
 
     printDetails(invoice, outstanding, console);
 
