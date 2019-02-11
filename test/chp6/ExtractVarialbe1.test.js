@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {price} from '../../src/chp6/ExtractVarialbe1'
 
-describe('price', () => {
+describe('Extract Variable 1', () => {
     it('should price order which quantity is under 50', () => {
         const anOrder = {
             quantity: 49,
@@ -18,8 +18,5 @@ describe('price', () => {
         };
 
         expect(price(anOrder)).to.equal(56.1);
-
     });
-
-
 });
