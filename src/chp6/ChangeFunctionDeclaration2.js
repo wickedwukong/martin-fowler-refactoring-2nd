@@ -2,7 +2,7 @@ export default class Book {
     constructor() {
         this._reservations = [];
     }
-    zz_addReservation(customer, isPriority) {
+    addReservation(customer, isPriority) {
         console.assert(isPriority === true || isPriority === false);
         this._reservations.push(customer);
     }

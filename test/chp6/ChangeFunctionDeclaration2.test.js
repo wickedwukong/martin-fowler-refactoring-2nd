@@ -13,10 +13,10 @@ describe('Book', () => {
         let book = new Book();
 
         let aCustomer = {id: "1"};
-        book.zz_addReservation(aCustomer,false);
+        book.addReservation(aCustomer,false);
 
         let anotherCustomer = {id: "2"};
-        book.zz_addReservation(anotherCustomer, false);
+        book.addReservation(anotherCustomer, false);
 
         expect(book.hasReservation(aCustomer)).to.equal(true);
         expect(book.hasReservation(anotherCustomer)).to.equal(true);
