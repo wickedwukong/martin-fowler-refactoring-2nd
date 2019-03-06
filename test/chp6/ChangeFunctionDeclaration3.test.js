@@ -1,12 +1,12 @@
-import { expect } from 'chai';
-import {inNewEngland} from '../../src/chp6/ChangeFunctionDeclaration3'
+import {expect} from 'chai';
+import {inNewEngland, xxxNewInNewEngland} from '../../src/chp6/ChangeFunctionDeclaration3'
 
 describe('inNewEngland', () => {
     it('should find no New England Customers when there are no customers', () => {
 
         const noCustomers = [];
 
-        const newEnglandCustomers = noCustomers.filter(c => inNewEngland(c));
+        const newEnglandCustomers = noCustomers.filter(c => xxxNewInNewEngland(c.address.state));
 
         expect(newEnglandCustomers).to.eql([]);
     });
@@ -21,7 +21,7 @@ describe('inNewEngland', () => {
 
         const someCustomers = [aNewEnglandCustomer];
 
-        const newEnglandCustomers = someCustomers.filter(c => inNewEngland(c));
+        const newEnglandCustomers = someCustomers.filter(c => xxxNewInNewEngland(c.address.state));
 
         expect(newEnglandCustomers).to.eql(someCustomers);
     });
@@ -48,7 +48,7 @@ describe('inNewEngland', () => {
 
         const someCustomers = [aNewEnglandCustomer, aNonNewEnglandCustomer, anotherNewEnglandCustomer];
 
-        const newEnglandCustomers = someCustomers.filter(c => inNewEngland(c));
+        const newEnglandCustomers = someCustomers.filter(c => xxxNewInNewEngland(c.address.state));
 
         expect(newEnglandCustomers).to.eql([aNewEnglandCustomer, anotherNewEnglandCustomer]);
     });
