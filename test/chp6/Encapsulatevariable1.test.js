@@ -19,4 +19,13 @@ describe('defaultOwner', () => {
         expect(newDefaultUser.lastName).to.equal("Jackson");
     });
 
+    it('can be changed outside the code', () => {
+        let defaultUser = getDefaultOwner();
+
+        defaultUser.lastName = "new last name";
+
+        expect(getDefaultOwner().firstName).to.equal("Mike");
+        expect(getDefaultOwner().lastName).to.equal("new last name");
+    });
+
 });
