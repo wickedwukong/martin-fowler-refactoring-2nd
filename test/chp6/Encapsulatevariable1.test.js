@@ -11,21 +11,22 @@ describe('defaultOwner', () => {
     });
 
     it('can be set', () => {
-        setDefaultOwner({firstName: "Mike", lastName: "Jackson"})
+        setDefaultOwner({firstName: "Mike", lastName: "Jackson"});
 
-        let newDefaultUser = getDefaultOwner()
+        let newDefaultUser = getDefaultOwner();
 
         expect(newDefaultUser.firstName).to.equal("Mike");
         expect(newDefaultUser.lastName).to.equal("Jackson");
     });
 
-    it('can be changed outside the code', () => {
+    it('can not be changed outside the code', () => {
         let defaultUser = getDefaultOwner();
+        let anotherDefaultUser = getDefaultOwner();
 
-        defaultUser.lastName = "new last name";
+        anotherDefaultUser.lastName = "new last name";
 
-        expect(getDefaultOwner().firstName).to.equal("Mike");
-        expect(getDefaultOwner().lastName).to.equal("new last name");
+        expect(getDefaultOwner().firstName).to.equal(defaultUser.firstName);
+        expect(getDefaultOwner().lastName).to.equal(defaultUser.lastName);
     });
 
 });
