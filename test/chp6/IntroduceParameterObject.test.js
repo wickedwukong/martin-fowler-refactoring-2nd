@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {readingsOutsideRange} from '../../src/chp6/IntroduceParameterObject'
+import {readingsOutsideRange, NumberRange} from '../../src/chp6/IntroduceParameterObject'
 
 const station = {
     name: "ZB1",
@@ -19,10 +19,9 @@ const operationPlan = {
 
 describe('readingsOutsideRange', () => {
     it('give the reading outside temperature outside range', () => {
+        const range = new NumberRange(operationPlan.temperatureFloor, operationPlan.temperatureCeiling);
 
-        let alerts = readingsOutsideRange(station,
-            operationPlan.temperatureFloor,
-            operationPlan.temperatureCeiling);
+        let alerts = readingsOutsideRange(station, range);
 
         expect(alerts).to.eql([{temp: 47, time: "2016-11-10 09:10"}, {temp: 58, time: "2016-11-10 09:30"}]);
     });
