@@ -23,7 +23,7 @@ export class Reading {
     get month()    {return this._month;}
     get year()     {return this._year;}
 
-    get calculateBaseCharge() {
+    get baseCharge() {
         return  baseRate(this.month, this.year) * this.quantity;
     }
 }
