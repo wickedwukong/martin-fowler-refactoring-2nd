@@ -9,6 +9,11 @@ public class DisplayOrderCount {
     private static class CommandLine {
         String filename;
         boolean onlyCountReady;
+        private String[] args;
+
+        public CommandLine(String[] args) {
+            this.args = args;
+        }
     }
 
     public static void main(String[] args) {
@@ -22,7 +27,7 @@ public class DisplayOrderCount {
 
     static long run(String[] args) throws java.io.IOException {
         if (args.length == 0) throw new RuntimeException("must supply a filename");
-        CommandLine commandLine = new CommandLine();
+        CommandLine commandLine = new CommandLine(args);
         commandLine.filename = args[args.length - 1];
         commandLine.onlyCountReady = Stream.of(args).anyMatch(arg -> "-r".equals(arg));
 
