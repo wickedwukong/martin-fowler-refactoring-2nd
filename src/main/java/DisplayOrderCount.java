@@ -33,9 +33,7 @@ public class DisplayOrderCount {
     }
 
     static long run(String[] args) throws java.io.IOException {
-        CommandLine commandLine = new CommandLine(args);
-
-        return countOrders(commandLine);
+        return countOrders(new CommandLine(args));
     }
 
     private static long countOrders(CommandLine commandLine) throws java.io.IOException {
