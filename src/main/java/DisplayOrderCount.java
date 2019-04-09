@@ -21,9 +21,7 @@ public class DisplayOrderCount {
     }
 
     static long run(String[] args) throws java.io.IOException {
-        CommandLine commandLine = parseCommandLine(args);
-
-        return countOrders(commandLine);
+        return countOrders(parseCommandLine(args));
     }
 
     private static CommandLine parseCommandLine(String[] args) {
@@ -35,14 +33,17 @@ public class DisplayOrderCount {
     }
 
     private static long countOrders(CommandLine commandLine) throws java.io.IOException {
-        File input = Paths.get(commandLine.filename).toFile();
-        ObjectMapper mapper = new ObjectMapper();
-        Order[] orders = mapper.readValue(input, Order[].class);
+        Order[] orders = new ObjectMapper().readValue(readOrderFile(commandLine), Order[].class);
+        
         if (commandLine.onlyCountReady) {
             return Stream.of(orders).filter(order -> "ready".equals(order.status)).count();
         } else {
             return orders.length;
         }
+    }
+
+    private static File readOrderFile(CommandLine commandLine) {
+        return Paths.get(commandLine.filename).toFile();
     }
 }
 
