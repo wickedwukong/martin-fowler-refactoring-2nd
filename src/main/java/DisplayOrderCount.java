@@ -7,12 +7,19 @@ import java.util.stream.Stream;
 public class DisplayOrderCount {
 
     private static class CommandLine {
-        String filename;
-        boolean onlyCountReady;
         private String[] args;
 
         public CommandLine(String[] args) {
+            if (args.length == 0) throw new RuntimeException("must supply a filename");
             this.args = args;
+        }
+
+        String filename() {
+            return args[args.length - 1];
+        }
+
+        boolean onlyCountReady() {
+            return Stream.of(args).anyMatch(arg -> "-r".equals(arg));
         }
     }
 
@@ -26,19 +33,16 @@ public class DisplayOrderCount {
     }
 
     static long run(String[] args) throws java.io.IOException {
-        if (args.length == 0) throw new RuntimeException("must supply a filename");
         CommandLine commandLine = new CommandLine(args);
-        commandLine.filename = args[args.length - 1];
-        commandLine.onlyCountReady = Stream.of(args).anyMatch(arg -> "-r".equals(arg));
 
         return countOrders(commandLine);
     }
 
     private static long countOrders(CommandLine commandLine) throws java.io.IOException {
-        File input = Paths.get(commandLine.filename).toFile();
+        File input = Paths.get(commandLine.filename()).toFile();
         ObjectMapper mapper = new ObjectMapper();
         Order[] orders = mapper.readValue(input, Order[].class);
-        if (commandLine.onlyCountReady) {
+        if (commandLine.onlyCountReady()) {
             return Stream.of(orders).filter(order -> "ready".equals(order.status)).count();
         } else {
             return orders.length;
