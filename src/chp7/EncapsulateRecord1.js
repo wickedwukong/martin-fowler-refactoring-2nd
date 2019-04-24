@@ -3,10 +3,19 @@ class Organization {
         this._data = data;
     }
 
-    set name(aString) {this._data.name = aString;}
+    set name(aString) {
+        this._data.name = aString;
+    }
+
+    get name() {
+        return this._data.name;
+    }
+
 }
 
 export const organization = new Organization({name: "Acme Gooseberries", country: "GB"});
+export function getOrganization() {
+    return organization;
+}
 
-export function getRawDataOfOrganization() {return organization._data;}
 

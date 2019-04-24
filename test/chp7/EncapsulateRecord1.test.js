@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import {getRawDataOfOrganization, organization} from '../../src/chp7/EncapsulateRecord1'
+import {getOrganization} from '../../src/chp7/EncapsulateRecord1'
 
 describe('organization', () => {
     it('should give right name', () => {
-        expect(getRawDataOfOrganization().name).to.equal('Acme Gooseberries');
+        expect(getOrganization().name).to.equal('Acme Gooseberries');
     });
 
     it('should set name', () => {
-        let organization = getRawDataOfOrganization();
+        let organization = getOrganization();
         organization.name = 'new name';
         expect(organization.name).to.equal('new name');
     });
