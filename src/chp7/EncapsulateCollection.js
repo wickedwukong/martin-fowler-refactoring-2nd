@@ -16,7 +16,16 @@ export class Person {
     set courses(aList) {
         this._courses = aList;
     }
-}
+
+    addCourse(course) {
+        this._courses.push(course);
+    }
+
+    removeCourse(aCourse, fnIfAbsent = () => {throw new RangeError();}) {
+        const index = this._courses.indexOf(aCourse);
+        if (index === -1) fnIfAbsent();
+        else this._courses.splice(index, 1);
+    }}
 
 export class Course {
 
