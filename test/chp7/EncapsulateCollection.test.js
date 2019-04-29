@@ -44,4 +44,16 @@ describe('Person', () => {
 
         expect(aPerson.courses).to.eql([new Course("Math", true)]);
     });
+
+    it('internal courses can not be modified by the courses obtained by getter', () => {
+        const aPerson = new Person("Xuemin");
+
+        aPerson.courses = [new Course("Math", true)];
+
+        const coursesByGetter = aPerson.courses;
+
+        coursesByGetter.push(new Course("Photography", true));
+
+        expect(aPerson.courses).to.eql([new Course("Math", true)]);
+    });
 });
