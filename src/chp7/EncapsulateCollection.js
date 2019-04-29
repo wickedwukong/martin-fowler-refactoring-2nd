@@ -13,10 +13,6 @@ export class Person {
         return this._courses;
     }
 
-    set courses(aList) {
-        this._courses = aList;
-    }
-
     addCourse(course) {
         this._courses.push(course);
     }

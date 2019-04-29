@@ -6,7 +6,8 @@ describe('Person', () => {
         const aPerson = new Person("Xuemin");
         const courses = [new Course("Math", true)];
 
-        aPerson.courses = courses;
+        courses.forEach(course => aPerson.addCourse(course));
+
         expect(aPerson.name).to.equal("Xuemin");
         expect(aPerson.courses).to.eql(courses);
     });
