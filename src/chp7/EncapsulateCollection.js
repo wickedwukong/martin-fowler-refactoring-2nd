@@ -13,6 +13,10 @@ export class Person {
         return this._courses;
     }
 
+    set courses(courses) {
+        return this._courses = courses.slice();
+    }
+
     addCourse(course) {
         this._courses.push(course);
     }

@@ -33,4 +33,15 @@ describe('Person', () => {
 
         expect(aPerson.courses).to.eql([new Course("Photography", false)]);
     });
+
+    it('internal courses can be modified by the courses passed to setter', () => {
+        const aPerson = new Person("Xuemin");
+        const courses = [new Course("Math", true)];
+
+        aPerson.courses = courses;
+
+        courses.push(new Course("Photography", true));
+
+        expect(aPerson.courses).to.eql([new Course("Math", true)]);
+    });
 });
