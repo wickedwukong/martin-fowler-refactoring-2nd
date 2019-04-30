@@ -8,15 +8,15 @@ export class Order {
         this._priority = new Priority(data.priority);
     }
 
-    get priority() {
+    get priorityString() {
         return this._priority.toString();
     }
 
-    set priority(value) {
+    set priorityString(value) {
         this._priority = new Priority(value);
     }
 }
 
 const orders = [new Order({priority: "normal"}), new Order({priority: "high"}), new Order({priority: "rush"})];
 
-export const highPriorityCount = orders.filter(o => "high" === o.priority || "rush" === o.priority).length;
+export const highPriorityCount = orders.filter(o => "high" === o.priorityString || "rush" === o.priorityString).length;
