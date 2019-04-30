@@ -1,6 +1,13 @@
 export class Order {
+    get priority() {
+        return this._priority;
+    }
+
+    set priority(value) {
+        this._priority = value;
+    }
     constructor(data) {
-        this.priority = data.priority;
+        this._priority = data.priority;
     }
 }
 
