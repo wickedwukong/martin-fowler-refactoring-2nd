@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {getOrganization} from '../../src/chp7/EncapsulateRecord1'
+import {getOrganization} from '../../src/chp7/EncapsulateRecord'
 
 describe('organization', () => {
     it('should give right name', () => {
