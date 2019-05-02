@@ -1,8 +1,7 @@
 export class Person {
     constructor(name, areaCode, number){
         this._name = name;
-        this._officeAreaCode = areaCode;
-        this._officeNumber = number;
+        this._telephoneNumber = new TelephoneNumber(areaCode, number);
     }
 
     get name() {
@@ -14,22 +13,32 @@ export class Person {
     }
 
     get telephoneNumber() {
-        return `(${this.officeAreaCode}) ${this.officeNumber}`;
+        return this._telephoneNumber.telephoneNumber;
     }
 
     get officeAreaCode() {
-        return this._officeAreaCode;
+        return this._telephoneNumber.officeAreaCode;
     }
-
-    set officeAreaCode(arg) {
-        this._officeAreaCode = arg;
-    }
-
     get officeNumber() {
-        return this._officeNumber;
+        return this._telephoneNumber.officeNumber;
+    }
+}
+
+class TelephoneNumber {
+    constructor(area, number) {
+        this._officeAreaCode = area;
+        this._officeNumber = number;
     }
 
-    set officeNumber(arg) {
-        this._officeNumber = arg;
+    get officeAreaCode()    {return this._officeAreaCode;}
+    set officeAreaCode(arg) {this._officeAreaCode = arg;}
+
+    get officeNumber() {return this._officeNumber;}
+    set officeNumber(arg) {this._officeNumber = arg;}
+
+    get telephoneNumber() {
+        return `(${this._officeAreaCode}) ${this._officeNumber}`;
     }
+
+
 }
