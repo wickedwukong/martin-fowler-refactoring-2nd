@@ -9,12 +9,12 @@ export class Person {
         return this._name;
     }
 
-    get department() {
-        return this._department;
+    get manager() {
+        return this._department.manager;
     }
 
-    set department(arg) {
-        this._department = arg;
+    get chargeCode() {
+        return this._department.chargeCode;
     }
 }
 
