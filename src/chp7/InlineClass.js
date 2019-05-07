@@ -43,4 +43,8 @@ export class Shipment {
     set trackingInformation(aTrackingInformation) {
         this._trackingInformation = aTrackingInformation;
     }
+
+    set shippingCompany(aShippingCompany) {
+        this._trackingInformation.shippingCompany = aShippingCompany;
+    }
 }
