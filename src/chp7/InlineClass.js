@@ -1,4 +1,4 @@
-export class TrackingInformation {
+export class Shipment {
     constructor(trackingNumber, shippingCompany) {
         this._trackingNumber = trackingNumber;
         this._shippingCompany = shippingCompany;
@@ -20,31 +20,7 @@ export class TrackingInformation {
         this._trackingNumber = arg;
     }
 
-    get display() {
-        return `${this.shippingCompany}: ${this.trackingNumber}`;
-    }
-}
-
-
-export class Shipment {
-
-    constructor(aTrackingInformation) {
-        this._trackingInformation = aTrackingInformation;
-    }
-
     get trackingInfo() {
-        return this._trackingInformation.display;
-    }
-
-    get trackingInformation() {
-        return this._trackingInformation;
-    }
-
-    set trackingInformation(aTrackingInformation) {
-        this._trackingInformation = aTrackingInformation;
-    }
-
-    set shippingCompany(aShippingCompany) {
-        this._trackingInformation.shippingCompany = aShippingCompany;
+        return `${this._shippingCompany}: ${this._trackingNumber}`;
     }
 }
