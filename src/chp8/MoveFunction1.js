@@ -9,11 +9,7 @@ export function trackSummary(points) {
     };
 
     function calculateDistance() {
-        let result = 0;
-        for (let i = 1; i < points.length; i++) {
-            result += distance(points[i - 1], points[i]);
-        }
-        return result;
+        return top_calculateDistance(points);
     }
 
     function distance(p1, p2) {
