@@ -13,10 +13,10 @@ describe('Account', () => {
     });
 
     it('has no overdraftCharge when no overdrawn for non premium', () => {
-        expect(new Account(new AccountType('Non-premium'), 0).overdraftCharge).to.equal(0);
+        expect(new Account(new AccountType('Non-premium'), 0).overdraftCharge()).to.equal(0);
     });
 
    it('has a basis overdraftCharge even when no overdrawn for non premium', () => {
-        expect(new Account(new AccountType('Premium'), 0).overdraftCharge).to.equal(10);
+        expect(new Account(new AccountType('Premium'), 0).overdraftCharge()).to.equal(10);
     });
 });
