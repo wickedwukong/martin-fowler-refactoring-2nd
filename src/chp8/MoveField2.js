@@ -12,12 +12,7 @@ class Account {
 }
 
 class AccountType {
-    constructor(nameString, interestRate) {
+    constructor(nameString) {
         this._name = nameString;
-        this._interestRate = interestRate;
-    }
-
-    get interestRate() {
-        return this._interestRate;
     }
 }
