@@ -1,12 +1,14 @@
 import {expect} from 'chai';
 import {photoDiv, renderPerson} from '../../src/chp8/MoveStatementsIntoFunction'
 
+const date = new Date('May 10, 2019');
+
 const aPerson = {
     name: "Alex",
     photo: {
         title: "holiday",
         location: "Greece",
-        date: new Date()
+        date: date
     }
 };
 
