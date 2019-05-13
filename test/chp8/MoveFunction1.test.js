@@ -14,8 +14,8 @@ describe('trackSummary', () => {
         };
 
         expect(trackSummary([newYork, tokyo])).to.eql({
-            distance: 6740.9149271449005,
-            pace: 0.024724635819912053,
+            distance: 6740.914927144901,
+            pace: 0.02472463581991205,
             time: 10000
         });
     });
