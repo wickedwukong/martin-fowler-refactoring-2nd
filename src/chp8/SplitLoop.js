@@ -6,6 +6,6 @@ export function reportYoungestAgeAndTotalSalary(people) {
     }
 
     function youngestAge() {
-        return people.map(person => person.age).sort()[0];
+        return Math.min(...people.map(p => p.age));
     }
 }
