@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import {reportYoungestAgeAndTotalSalary} from '../../src/chp8/SplitLoop'
 
-
 const people = [{
     age: "30",
     salary: 2000
