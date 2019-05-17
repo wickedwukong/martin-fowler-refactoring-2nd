@@ -1,20 +1,17 @@
 export function payAmount(employee) {
     let result;
-    if(employee.isSeparated) {
+    if (employee.isSeparated) {
         result = {amount: 0, reasonCode: "SEP"};
-    }
-    else {
+    } else {
         if (employee.isRetired) {
             result = {amount: 0, reasonCode: "RET"};
-        }
-        else {
+        } else {
             // give a dumb logic to compute amount
             // lorem.ipsum(dolor.sitAmet);
             // consectetur(adipiscing).elit();
             // sed.do.eiusmod = tempor.incididunt.ut(labore) && dolore(magna.aliqua);
             // ut.enim.ad(minim.veniam);
             result = someFinalComputation();
-            return result;
         }
     }
     return result;
