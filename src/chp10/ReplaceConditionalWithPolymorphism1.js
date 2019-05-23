@@ -5,16 +5,17 @@ export function speeds(birds) {
     return new Map(birds.map(b => [b.name, airSpeedVelocity(b)]));
 }
 export function plumage(bird) {
-    return new Bird(bird).plumage
+    return createBird(bird).plumage
 }
 export function airSpeedVelocity(bird) {
-    return new Bird(bird).airSpeedVelocity
+    return createBird(bird).airSpeedVelocity
 }
 
 class Bird {
     constructor(birdObject) {
         Object.assign(this, birdObject);
     }
+
     get plumage() {
         switch (this.type) {
             case 'EuropeanSwallow':
@@ -27,6 +28,7 @@ class Bird {
                 return "unknown";
         }
     }
+
     get airSpeedVelocity() {
         switch (this.type) {
             case 'EuropeanSwallow':
@@ -39,4 +41,25 @@ class Bird {
                 return null;
         }
     }
+}
+
+function createBird(bird) {
+    switch (bird.type) {
+        case 'EuropeanSwallow':
+            return new EuropeanSwallow(bird);
+        case 'AfricanSwallow':
+            return new AfricanSwallow(bird);
+        case 'NorweigianBlueParrot':
+            return new NorwegianBlueParrot(bird);
+        default:
+            return new Bird(bird);
+    }
+}
+class EuropeanSwallow extends Bird {
+}
+
+class AfricanSwallow extends Bird {
+}
+
+class NorwegianBlueParrot extends Bird {
 }
