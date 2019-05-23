@@ -1,32 +1,42 @@
 export function plumages(birds) {
-    let map = birds.map(b => [b.name, plumage(b)]);
-    let map1 = new Map(map);
-    return map1;
+    return new Map(birds.map(b => [b.name, plumage(b)]));
 }
 export function speeds(birds) {
     return new Map(birds.map(b => [b.name, airSpeedVelocity(b)]));
 }
 export function plumage(bird) {
-    switch (bird.type) {
-        case 'EuropeanSwallow':
-            return "average";
-        case 'AfricanSwallow':
-            return (bird.numberOfCoconuts > 2) ? "tired" : "average";
-        case 'NorwegianBlueParrot':
-            return (bird.voltage > 100) ? "scorched" : "beautiful";
-        default:
-            return "unknown";
-    }
+    return new Bird(bird).plumage
 }
 export function airSpeedVelocity(bird) {
-    switch (bird.type) {
-        case 'EuropeanSwallow':
-            return 35;
-        case 'AfricanSwallow':
-            return 40 - 2 * bird.numberOfCoconuts;
-        case 'NorwegianBlueParrot':
-            return (bird.isNailed) ? 0 : 10 + bird.voltage / 10;
-        default:
-            return null;
+    return new Bird(bird).airSpeedVelocity
+}
+
+class Bird {
+    constructor(birdObject) {
+        Object.assign(this, birdObject);
+    }
+    get plumage() {
+        switch (this.type) {
+            case 'EuropeanSwallow':
+                return "average";
+            case 'AfricanSwallow':
+                return (this.numberOfCoconuts > 2) ? "tired" : "average";
+            case 'NorwegianBlueParrot':
+                return (this.voltage > 100) ? "scorched" : "beautiful";
+            default:
+                return "unknown";
+        }
+    }
+    get airSpeedVelocity() {
+        switch (this.type) {
+            case 'EuropeanSwallow':
+                return 35;
+            case 'AfricanSwallow':
+                return 40 - 2 * this.numberOfCoconuts;
+            case 'NorwegianBlueParrot':
+                return (this.isNailed) ? 0 : 10 + this.voltage / 10;
+            default:
+                return null;
+        }
     }
 }
