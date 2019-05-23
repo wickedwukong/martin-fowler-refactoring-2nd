@@ -1,12 +1,15 @@
 export function plumages(birds) {
     return new Map(birds.map(b => [b.name, plumage(b)]));
 }
+
 export function speeds(birds) {
     return new Map(birds.map(b => [b.name, airSpeedVelocity(b)]));
 }
+
 export function plumage(bird) {
     return createBird(bird).plumage
 }
+
 export function airSpeedVelocity(bird) {
     return createBird(bird).airSpeedVelocity
 }
@@ -19,7 +22,7 @@ class Bird {
     get plumage() {
         switch (this.type) {
             case 'EuropeanSwallow':
-                return "average";
+                return "opps";
             case 'AfricanSwallow':
                 return (this.numberOfCoconuts > 2) ? "tired" : "average";
             case 'NorwegianBlueParrot':
@@ -55,7 +58,12 @@ function createBird(bird) {
             return new Bird(bird);
     }
 }
+
 class EuropeanSwallow extends Bird {
+    get plumage() {
+        return "average";
+    }
+
 }
 
 class AfricanSwallow extends Bird {
