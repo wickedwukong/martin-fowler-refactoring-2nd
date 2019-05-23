@@ -1,7 +1,12 @@
 export function rating(voyage, history) {
-    return new Rating(voyage, history).value;
+    return new createRating(voyage, history).value;
 }
 
+function createRating(voyage, history) {
+    if (voyage.zone === "china" && history.some(v => "china" === v.zone))
+        return new ExperiencedChinaRating(voyage, history);
+    else return new Rating(voyage, history);
+}
 
 class Rating {
     constructor(voyage, history) {
@@ -29,7 +34,7 @@ class Rating {
         let result = 1;
         if (this.history.length < 5) result += 4;
         result += this.history.filter(v => v.profit < 0).length;
-        if (this.voyage.zone === "china" && this.hasChinaHistory) result -= 2;
+        
         return Math.max(result, 0);
     }
 
@@ -52,5 +57,12 @@ class Rating {
 
     get hasChinaHistory() {
         return this.history.some(v => "china" === v.zone);
+    }
+}
+
+class ExperiencedChinaRating extends Rating {
+    get captainHistoryRisk() {
+        const result =  super.captainHistoryRisk - 2;
+        return Math.max(result, 0);
     }
 }
