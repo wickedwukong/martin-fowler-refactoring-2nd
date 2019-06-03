@@ -4,7 +4,7 @@ export class Site {
     }
 
     get customer() {
-        return (this._customer === "unknown") ? new UnknownCustomer() :  this._customer;
+        return (this._customer === "unknown") ? new UnknownCustomer() : this._customer;
     }
 }
 
@@ -32,19 +32,38 @@ export class Customer {
         return this._paymentHistory;
     }
 
-    get isUnknown() {return false;}
+    get isUnknown() {
+        return false;
+    }
 
 }
 
+class NullPaymentHistory {
+    get weeksDelinquentInLastYear() {
+        return 0;
+    }
+}
+
 export class UnknownCustomer {
-    get isUnknown() {return true;}
+    get isUnknown() {
+        return true;
+    }
 
     get name() {
         return "occupant";
     }
 
-    get billingPlan()    {return registry.billingPlans.basic;}
-    set billingPlan(arg) { /* ignore */ }
+    get billingPlan() {
+        return registry.billingPlans.basic;
+    }
+
+    set billingPlan(arg) { /* ignore */
+    }
+
+    get paymentHistory() {
+        return new NullPaymentHistory();
+    }
+
 }
 
 function isUnknown(arg) {
@@ -83,8 +102,5 @@ export function changeBillingPlan(site, newPlan) {
 
 //client 4
 export function weeksDelinquent(site) {
-    const aCustomer = site.customer;
-
-    const weeksDelinquent = isUnknown(aCustomer) ? 0 : aCustomer.paymentHistory.weeksDelinquentInLastYear;
-    return weeksDelinquent;
+    return site.customer.paymentHistory.weeksDelinquentInLastYear;
 }
