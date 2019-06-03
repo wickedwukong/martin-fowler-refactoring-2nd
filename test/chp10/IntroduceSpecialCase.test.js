@@ -24,7 +24,7 @@ describe('changeBillingPlan', () => {
         expect(changeBillingPlan(new Site("unknown"))).to.eql(new UnknownCustomer());
     });
     it('change customer billing plan when customer is not "unknown" ', () => {
-        expect(changeBillingPlan(new Site(new Customer("Ava", "Annual")), "basic").billingPlan).to.equal("basic");
+        expect(changeBillingPlan(new Site(new Customer("Ava", "basic")), "Annual").billingPlan).to.equal("Annual");
     });
 });
 

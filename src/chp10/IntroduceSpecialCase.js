@@ -77,10 +77,8 @@ export function billingPlan(site) {
 
 //client 3
 export function changeBillingPlan(site, newPlan) {
-    const aCustomer = site.customer;
-
-    if (!isUnknown(aCustomer)) aCustomer.billingPlan = newPlan;
-    return aCustomer;
+    site.customer.billingPlan = newPlan;
+    return site.customer;
 }
 
 //client 4
