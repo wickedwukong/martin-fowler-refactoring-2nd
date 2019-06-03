@@ -32,31 +32,15 @@ export class Customer {
         return this._paymentHistory;
     }
 
-    get isUnknown() {
-        return false;
-    }
-
-}
-
-class UnknownCustomer {
-    get isUnknown() {
-        return true;
-    }
 }
 
 // client 1…
-
-function isUnknown(arg) {
-    if (!((arg instanceof Customer) || (arg === "unknown")))
-        throw new Error(`investigate bad value: <${arg}>`);
-    return (arg === "unknown");
-}
 
 export function customerName(site) {
     const aCustomer = site.customer;
 // ... lots of intervening code ...
     let customerName;
-    if (isUnknown(aCustomer)) customerName = "occupant";
+    if (aCustomer === "unknown") customerName = "occupant";
     else customerName = aCustomer.name;
 
     return customerName;
@@ -74,7 +58,7 @@ const registry = {
 export function billingPlan(site) {
     const aCustomer = site.customer;
 
-    const plan = isUnknown(aCustomer) ?
+    const plan = (aCustomer === "unknown") ?
         registry.billingPlans.basic
         : aCustomer.billingPlan;
 
@@ -86,7 +70,7 @@ export function billingPlan(site) {
 export function changeBillingPlan(site, newPlan) {
     const aCustomer = site.customer;
 
-    if (!isUnknown(aCustomer)) aCustomer.billingPlan = newPlan;
+    if (aCustomer !== "unknown") aCustomer.billingPlan = newPlan;
     return aCustomer;
 }
 
@@ -94,6 +78,6 @@ export function changeBillingPlan(site, newPlan) {
 export function weeksDelinquent(site) {
     const aCustomer = site.customer;
 
-    const weeksDelinquent = isUnknown(aCustomer) ? 0 : aCustomer.paymentHistory.weeksDelinquentInLastYear;
+    const weeksDelinquent = (aCustomer === "unknown") ? 0 : aCustomer.paymentHistory.weeksDelinquentInLastYear;
     return weeksDelinquent;
 }
