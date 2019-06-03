@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {customerName, Customer, Site, billingPlan, changeBillingPlan, weeksDelinquent} from '../../src/chp10/IntroduceSpecialCase'
+import {customerName, Customer, Site, billingPlan, changeBillingPlan, weeksDelinquent, UnknownCustomer} from '../../src/chp10/IntroduceSpecialCase'
 
 describe('customerName', () => {
     it('should give "occupant" if customer is "unknown" ', () => {
@@ -21,7 +21,7 @@ describe('billingPlan', () => {
 
 describe('changeBillingPlan', () => {
     it('do nothing to customer billing plan is customer is "unknown" ', () => {
-        expect(changeBillingPlan(new Site("unknown"))).to.equal("unknown");
+        expect(changeBillingPlan(new Site("unknown"))).to.eql(new UnknownCustomer());
     });
     it('change customer billing plan when customer is not "unknown" ', () => {
         expect(changeBillingPlan(new Site(new Customer("Ava", "Annual")), "basic").billingPlan).to.equal("basic");
