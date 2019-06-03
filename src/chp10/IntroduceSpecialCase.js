@@ -42,6 +42,9 @@ export class UnknownCustomer {
     get name() {
         return "occupant";
     }
+
+    get billingPlan()    {return registry.billingPlans.basic;}
+    set billingPlan(arg) { /* ignore */ }
 }
 
 function isUnknown(arg) {
@@ -68,13 +71,7 @@ const registry = {
 };
 
 export function billingPlan(site) {
-    const aCustomer = site.customer;
-
-    const plan = isUnknown(aCustomer) ?
-        registry.billingPlans.basic
-        : aCustomer.billingPlan;
-
-    return plan;
+    return site.customer.billingPlan;
 }
 
 
