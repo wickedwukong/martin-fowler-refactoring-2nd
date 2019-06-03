@@ -71,7 +71,9 @@ const registry = {
     }
 };
 
-export function billingPlan(aCustomer) {
+export function billingPlan(site) {
+    const aCustomer = site.customer;
+
     const plan = isUnknown(aCustomer) ?
         registry.billingPlans.basic
         : aCustomer.billingPlan;
@@ -81,13 +83,17 @@ export function billingPlan(aCustomer) {
 
 
 //client 3
-export function changeBillingPlan(aCustomer, newPlan) {
+export function changeBillingPlan(site, newPlan) {
+    const aCustomer = site.customer;
+
     if (!isUnknown(aCustomer)) aCustomer.billingPlan = newPlan;
     return aCustomer;
 }
 
 //client 4
-export function weeksDelinquent(aCustomer) {
+export function weeksDelinquent(site) {
+    const aCustomer = site.customer;
+
     const weeksDelinquent = isUnknown(aCustomer) ? 0 : aCustomer.paymentHistory.weeksDelinquentInLastYear;
     return weeksDelinquent;
 }

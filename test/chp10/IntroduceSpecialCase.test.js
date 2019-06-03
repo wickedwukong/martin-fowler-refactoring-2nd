@@ -12,27 +12,27 @@ describe('customerName', () => {
 
 describe('billingPlan', () => {
     it('should give basic billing plan', () => {
-        expect(billingPlan("unknown")).to.equal("basic");
+        expect(billingPlan(new Site("unknown"))).to.equal("basic");
     });
     it('should give customer billing plan when it is not "unknown" ', () => {
-        expect(billingPlan(new Customer("Ava", "Annual"))).to.equal("Annual");
+        expect(billingPlan(new Site(new Customer("Ava", "Annual")))).to.equal("Annual");
     });
 });
 
 describe('changeBillingPlan', () => {
     it('do nothing to customer billing plan is customer is "unknown" ', () => {
-        expect(changeBillingPlan("unknown")).to.equal("unknown");
+        expect(changeBillingPlan(new Site("unknown"))).to.equal("unknown");
     });
     it('change customer billing plan when customer is not "unknown" ', () => {
-        expect(changeBillingPlan(new Customer("Ava", "Annual"), "basic").billingPlan).to.equal("basic");
+        expect(changeBillingPlan(new Site(new Customer("Ava", "Annual")), "basic").billingPlan).to.equal("basic");
     });
 });
 
 describe('weeksDelinquent', () => {
     it('should have no/zero weeks delinquent for unknown customer', () => {
-        expect(weeksDelinquent("unknown")).to.equal(0);
+        expect(weeksDelinquent(new Site("unknown"))).to.equal(0);
     });
     it('should report weeks delinquent from customer payment history', () => {
-        expect(weeksDelinquent(new Customer("Ava", "Annual", {weeksDelinquentInLastYear: 2}))).to.equal(2);
+        expect(weeksDelinquent(new Site(new Customer("Ava", "Annual", {weeksDelinquentInLastYear: 2})))).to.equal(2);
     });
 });
