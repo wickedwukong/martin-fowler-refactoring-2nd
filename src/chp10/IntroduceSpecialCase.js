@@ -38,6 +38,10 @@ export class Customer {
 
 export class UnknownCustomer {
     get isUnknown() {return true;}
+
+    get name() {
+        return "occupant";
+    }
 }
 
 function isUnknown(arg) {
@@ -51,13 +55,7 @@ function isUnknown(arg) {
 // client 1…
 
 export function customerName(site) {
-    const aCustomer = site.customer;
-// ... lots of intervening code ...
-    let customerName;
-    if (isUnknown(aCustomer)) customerName = "occupant";
-    else customerName = aCustomer.name;
-
-    return customerName;
+    return site.customer.name;
 }
 
 
