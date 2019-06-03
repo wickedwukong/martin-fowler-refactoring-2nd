@@ -10,9 +10,10 @@ export class Site {
 
 
 export class Customer {
-    constructor(name, billingPlan) {
+    constructor(name, billingPlan, paymentHistory) {
         this._name = name;
         this._billingPlan = billingPlan;
+        this._paymentHistory = paymentHistory;
     }
 
     get name() {
@@ -28,7 +29,7 @@ export class Customer {
     }
 
     get paymentHistory() {
-        //
+        return this._paymentHistory;
     }
 
 }
@@ -70,3 +71,8 @@ export function changeBillingPlan(aCustomer, newPlan) {
     return aCustomer;
 }
 
+//client 4
+export function weeksDelinquent(aCustomer) {
+    const weeksDelinquent = (aCustomer === "unknown") ? 0 : aCustomer.paymentHistory.weeksDelinquentInLastYear;
+    return weeksDelinquent;
+}

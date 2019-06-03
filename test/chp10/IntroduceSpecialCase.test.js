@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {customerName, Customer, Site, billingPlan, changeBillingPlan} from '../../src/chp10/IntroduceSpecialCase'
+import {customerName, Customer, Site, billingPlan, changeBillingPlan, weeksDelinquent} from '../../src/chp10/IntroduceSpecialCase'
 
 describe('customerName', () => {
     it('should give "occupant" if customer is "unknown" ', () => {
@@ -25,5 +25,14 @@ describe('changeBillingPlan', () => {
     });
     it('change customer billing plan when customer is not "unknown" ', () => {
         expect(changeBillingPlan(new Customer("Ava", "Annual"), "basic").billingPlan).to.equal("basic");
+    });
+});
+
+describe('weeksDelinquent', () => {
+    it('should have no/zero weeks delinquent for unknown customer', () => {
+        expect(weeksDelinquent("unknown")).to.equal(0);
+    });
+    it('should report weeks delinquent from customer payment history', () => {
+        expect(weeksDelinquent(new Customer("Ava", "Annual", {weeksDelinquentInLastYear: 2}))).to.equal(2);
     });
 });
