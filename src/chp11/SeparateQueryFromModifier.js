@@ -14,9 +14,11 @@ export function alertForMiscreant(people, alarm) {
     for (const p of people) {
         if (p === "Don") {
             setOffAlarms(alarm, p);
+            return;
         }
         if (p === "John") {
             setOffAlarms(alarm, p);
+            return;
         }
     }
 }
