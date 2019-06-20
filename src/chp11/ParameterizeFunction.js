@@ -12,7 +12,7 @@ function bottomBand(usage) {
 }
 
 function withinBand(usage, bottom, top) {
-    return usage > bottom ? Math.min(usage, 200) - bottom : 0;
+    return usage > bottom ? Math.min(usage, top) - bottom : 0;
 }
 
 function topBand(usage) {
