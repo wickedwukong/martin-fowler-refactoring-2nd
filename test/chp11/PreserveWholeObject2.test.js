@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {HeatingPlan, temperatureAlerts} from '../../src/chp11/PreserveWholeObject1'
+import {HeatingPlan, temperatureAlerts} from '../../src/chp11/PreserveWholeObject2'
 
 describe('temperatureAlerts', () => {
     it('should not report alert when room low and high temperature are in range', () => {

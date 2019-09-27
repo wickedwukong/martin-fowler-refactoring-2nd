@@ -1,15 +1,9 @@
-function xxNEWwithinRange(tempRange, aPlan) {
-    const low = tempRange.low;
-    const high = tempRange.high;
-    let isWithinRange = aPlan.withinRange(low, high);
-    return isWithinRange;
-}
 
 export function temperatureAlerts(aRoom, aPlan) {
     const alerts = [];
     let tempRange = aRoom.daysTempRange;
 
-    let isWithinRange = xxNEWwithinRange(tempRange, aPlan);
+    let isWithinRange = aPlan.xxNEWwithinRange(tempRange);
     if (!isWithinRange) {
         alerts.push("room temperature went outside range");
     }
@@ -26,5 +20,13 @@ export class HeatingPlan {
     withinRange(bottom, top) {
         return (bottom >= this._temperatureRange.low) && (top <= this._temperatureRange.high);
     }
+
+    xxNEWwithinRange(tempRange) {
+        const low = tempRange.low;
+        const high = tempRange.high;
+        let isWithinRange = this.withinRange(low, high);
+        return isWithinRange;
+    }
+
 }
 
