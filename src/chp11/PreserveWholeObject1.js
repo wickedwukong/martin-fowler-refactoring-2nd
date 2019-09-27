@@ -1,7 +1,5 @@
 export function temperatureAlerts(aRoom, aPlan) {
     const alerts = [];
-    const low = aRoom.daysTempRange.low;
-    const high = aRoom.daysTempRange.high;
     if (!aPlan.xxNEWwithinRange(aRoom.daysTempRange)) {
         alerts.push("room temperature went outside range");
     }
