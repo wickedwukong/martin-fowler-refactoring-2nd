@@ -14,3 +14,6 @@ export class Employee {
     }
 }
 
+export function createEmployee(name, typeCode) {
+    return new Employee(name, typeCode);
+}
