@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {charge, ChargeCalculator} from '../../src/chp11/ReplaceCommandwithFunction'
+import {charge} from '../../src/chp11/ReplaceCommandwithFunction'
 
 describe('ChargeCalculator', () => {
     const customer = {baseRate: 0.1};
