@@ -1,18 +1,7 @@
 export class Employee {
 
-    constructor(name, type) {
-        this.validateType(type);
+    constructor(name) {
         this._name = name;
-        this._type = type;
-    }
-
-    get type() {
-        return this._type;
-    }
-
-    validateType(arg) {
-        if (!["engineer", "manager", "salesman"].includes(arg))
-            throw new Error(`Employee cannot be of type ${arg}`);
     }
 
     toString() {
@@ -28,8 +17,9 @@ export function createEmployee(name, type) {
             return new Salesman(name, type);
         case "manager":
             return new Manager(name, type);
+        default:
+            throw new Error(`Employee cannot be of type ${type}`);
     }
-    return new Employee(name, type);
 }
 
 class Engineer extends Employee {
