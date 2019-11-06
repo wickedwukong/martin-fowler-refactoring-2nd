@@ -1,0 +1,12 @@
+name: refactoring
+root: ~/development/martin-fowler-refactoring-2nd
+
+windows:
+  - yarn:
+      layout: even-horizontal
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - 
+        - git pull && yarn test
