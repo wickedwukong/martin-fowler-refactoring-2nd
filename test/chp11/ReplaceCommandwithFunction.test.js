@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {ChargeCalculator} from '../../src/chp11/ReplaceCommandwithFunction'
+import {charge, ChargeCalculator} from '../../src/chp11/ReplaceCommandwithFunction'
 
 describe('ChargeCalculator', () => {
     const customer = {baseRate: 0.1};
@@ -12,9 +12,7 @@ describe('ChargeCalculator', () => {
     });
 
     it('should calculate total  charge', () => {
-        const chargeCalculator = new ChargeCalculator(customer, 100, provider);
-
-        expect(chargeCalculator.charge).to.equal(1010);
+        expect(charge(customer, 100, provider)).to.equal(1010);
     });
-
 });
+
