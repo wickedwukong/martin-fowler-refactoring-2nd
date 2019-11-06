@@ -6,7 +6,9 @@ export class Employee {
         this._type = type;
     }
 
-    get type() {return this._type;}
+    get type() {
+        return this._type;
+    }
 
     validateType(arg) {
         if (!["engineer", "manager", "salesman"].includes(arg))
@@ -20,11 +22,30 @@ export class Employee {
 
 export function createEmployee(name, type) {
     switch (type) {
-        case "engineer": return new Engineer(name, type);
+        case "engineer":
+            return new Engineer(name, type);
+        case "salesman":
+            return new Salesman(name, type);
+        case "manager":
+            return new Manager(name, type);
     }
     return new Employee(name, type);
 }
 
 class Engineer extends Employee {
-    get type() {return "engineer";}
+    get type() {
+        return "engineer";
+    }
+}
+
+class Salesman extends Employee {
+    get type() {
+        return "salesman";
+    }
+}
+
+class Manager extends Employee {
+    get type() {
+        return "manager";
+    }
 }
