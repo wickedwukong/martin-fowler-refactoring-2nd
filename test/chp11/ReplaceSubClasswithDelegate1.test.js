@@ -27,4 +27,36 @@ describe('Booking', () => {
         expect(booking.basePrice).to.equal(100);
         expect(booking.hasTalkback).to.equal(true);
     });
+})
+
+describe('PremiumBooking', () => {
+    it('should have talkBack on peak day and calculate base price for peak day', () => {
+        const show = {
+            talkback: true,
+            price: 100
+        };
+
+        const peakDay = new Date(2019, 11, 29);
+        const extras = {premiumFee: 1000};
+
+        const premiumBooking = new PremiumBooking(show, peakDay, extras);
+
+        expect(premiumBooking.basePrice).to.equal(1115);
+        expect(premiumBooking.hasTalkback).to.equal(true);
+    });
+
+    it('should have talkBack on non-peak day and calculate base price for non-peak day', () => {
+        const show = {
+            talkback: true,
+            price: 100
+        };
+
+        const nonPeakDay = new Date(2019, 1, 30);
+        const extras = {premiumFee: 2000};
+
+        const booking = new PremiumBooking(show, nonPeakDay, extras);
+
+        expect(booking.basePrice).to.equal(2100);
+        expect(booking.hasTalkback).to.equal(true);
+    });
 });
