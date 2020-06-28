@@ -13,7 +13,7 @@ run the following commands:
 
 ``` sh
  yarn init
- yarn add --save-dev mocha chai babel-register babel-preset-es201
+ yarn add --save-dev mocha chai babel-register babel-preset-es2015
 ```
 
 Open up package.json and set your test script to the following: 
